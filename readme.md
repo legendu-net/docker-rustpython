@@ -1,6 +1,6 @@
 # dclong/rustpython [@DockerHub](https://hub.docker.com/r/dclong/rustpython/) | [@GitHub](https://github.com/dclong/docker-rustpython)
 
-RustPython in Docker. 
+[RustPython](https://github.com/RustPython/RustPython) in Docker. 
 
 ## Prerequisite
 
