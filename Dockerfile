@@ -1,7 +1,14 @@
 # NAME: dclong/rustpython
-FROM dclong/rust
-# GIT: https://github.com/legendu-net/docker-rust.git
+FROM rust:1.66-alpine3.17 as builder
 
-ENV PATH=/root/.cargo/bin:$PATH
-RUN cargo install --git https://github.com/RustPython/RustPython \
-    && /scripts/sys/purge_cache.sh
+WORKDIR /workdir
+
+RUN apk --no-cache add musl-dev
+RUN cargo install --git https://github.com/RustPython/RustPython --features freeze-stdlib --profile release
+
+FROM alpine:3.17
+
+RUN apk --no-cache add musl
+
+COPY --from=builder /usr/local/cargo/bin/rustpython /usr/local/bin/rustpython
+ENTRYPOINT [ "/usr/local/bin/rustpython" ]
