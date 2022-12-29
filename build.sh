@@ -4,4 +4,4 @@ set -eu
 
 docker build -t dclong/rustpython .
 
-docker run --rm -it dclong/rustpython --help
+docker run --rm dclong/rustpython --help
